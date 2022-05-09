@@ -1,0 +1,11 @@
+.nav-bar {
+    color: white;
+    background: black;
+    height: fit-content;
+    width: available;
+    padding: 10px;
+}
+.nav-item {
+    width: fit-content;
+    border-radius: 1px;
+}
