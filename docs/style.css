@@ -1,11 +1,35 @@
-.nav-bar {
+#nav-bar {
     color: white;
     background: black;
     height: fit-content;
     width: available;
     padding: 10px;
 }
-.nav-item {
+
+span.nav-head {
+    color: orange;
+    line-height: 30px;
+    font-size: 30px;
+    width: 50%;
+    align-content: center;
+    text-align: center;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+span.nav-head:hover {
+    color: white;
+}
+span.nav-item {
     width: fit-content;
-    border-radius: 1px;
+    height: available;
+    color: white;
+    padding: 5px;
+    font-size: 20px;
+}
+span.nav-item:hover {
+    color: orange;
+}
+#nav-items {
+    padding-left: 20%;
+    display: inline;
 }
