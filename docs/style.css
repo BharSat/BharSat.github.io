@@ -33,3 +33,30 @@ span.nav-item:hover {
     padding-left: 20%;
     display: inline;
 }
+
+
+.info {
+    padding: 10%;
+}
+h1{
+    padding: 1%;
+}
+h2{
+    padding: 1%;
+    padding-left: 2%;
+}
+h3{
+    padding: 1%;
+    padding-left: 3%;
+}
+h4{
+    padding: 1%;
+    padding-left: 4%;
+}
+body-text {
+    padding: 1%;
+    padding-left: 9%;
+}
+td, tr, th {
+    padding: 1%;
+}
