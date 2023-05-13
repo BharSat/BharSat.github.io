@@ -1,4 +1,5 @@
 let generalSettings = new Map();
+let trialSettings = new Map();
 function saveGeneralSettings() {
 
   const noOfSessions = document.getElementById("sessions").value;
@@ -29,7 +30,7 @@ function saveGeneralSettings() {
 }
 
 
-function loadGeneralSettings(generalSettings) {
+function loadGeneralSettings() {
   document.getElementById("sessions").value = generalSettings.get("noOfSessions");
   document.getElementById("trials").value = generalSettings.get("noOfTrials");
   document.getElementById("cueFormat").value = generalSettings.get("cueFormat");
@@ -39,6 +40,40 @@ function loadGeneralSettings(generalSettings) {
   document.getElementById("fogDistance").value = generalSettings.get("fogDistance");
   document.getElementById("fogDensity").value = generalSettings.get("fogDensity");
   console.log(generalSettings);
+}
+
+
+function loadTrialWiseSettings() {
+  let trialWiseSettings = trialSettings.get(string.concat(document.getElementById("session").value, "-", document.getElementById("trial").value));
+  document.getElementById("session").value = trialWiseSettings.get("sessionNumber");
+  document.getElementById("trial").value = trialWiseSettings.get("trialNumber");
+  document.getElementById("probe").checked = trialWiseSettings.get("isProbe");
+  document.getElementById("startX").value = trialWiseSettings.get("startX");
+  document.getElementById("startY").value = trialWiseSettings.get("startY");
+  document.getElementById("endX").value = trialWiseSettings.get("endX");
+  document.getElementById("endY").value = trialWiseSettings.get("endY");
+  document.getElementById("endX1").value = trialWiseSettings.get("endX1");
+  document.getElementById("endY1").value = trialWiseSettings.get("endY1");
+  document.getElementById("endShapeRect").checked = (trialWiseSettings.get("endShape") === "rect");
+  document.getElementById("endShapeEllipse").checked = (trialWiseSettings.get("endShape") === "ellipse");
+}
+
+
+function saveTrialWiseSettings() {
+  trialSettings.set(string.concat(document.getElementById("session").value, "-", document.getElementById("trial").value), new Map([
+      ["sessionNumber", document.getElementById("session").value],
+      ["trialNumber", document.getElementById("trial").value],
+      ["isProbe", document.getElementById("probe").checked],
+      ["startX", document.getElementById("startX").value],
+      ["startY", document.getElementById("startY").value],
+      ["endX", document.getElementById("endX").value],
+      ["endY", document.getElementById("endY").value],
+      ["endX1", document.getElementById("endX1").value],
+      ["endY1", document.getElementById("endY1").value],
+      ["endShape", document.getElementById("endShapeRect").checked ? "rect" : "ellipse"],
+    ]
+    )
+  );
 }
 
 
@@ -82,7 +117,7 @@ function changeForm(content) {
         </div>
       </form>
     `;
-    loadGeneralSettings(generalSettings);
+    loadGeneralSettings();
   } else if (content === "Trial Settings") {
     saveGeneralSettings();
     formDiv.innerHTML = `
@@ -149,7 +184,8 @@ function changeForm(content) {
             </div>
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary" onclick="loadTrialWiseSettings()">Load</button>
+            <button type="submit" class="btn btn-primary" onclick="saveTrialWiseSettings()">Update</button>
           </div>
         </div>
         <div class="col-md-6">
